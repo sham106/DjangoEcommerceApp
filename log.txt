@@ -1,0 +1,47 @@
+2022-08-10T09:28:29.573687+00:00 app[api]: Initial release by user shambachsikuku@gmail.com
+2022-08-10T09:28:29.573687+00:00 app[api]: Release v1 created by user shambachsikuku@gmail.com
+2022-08-10T09:28:29.717492+00:00 app[api]: Release v2 created by user shambachsikuku@gmail.com
+2022-08-10T09:28:29.717492+00:00 app[api]: Enable Logplex by user shambachsikuku@gmail.com
+2022-08-10T10:18:08.000000+00:00 app[api]: Build started by user shambachsikuku@gmail.com
+2022-08-10T10:18:39.471774+00:00 app[api]: Attach DATABASE (@ref:postgresql-asymmetrical-02808) by user shambachsikuku@gmail.com
+2022-08-10T10:18:39.471774+00:00 app[api]: Running release v3 commands by user shambachsikuku@gmail.com
+2022-08-10T10:18:39.486316+00:00 app[api]: Release v4 created by user shambachsikuku@gmail.com
+2022-08-10T10:18:39.486316+00:00 app[api]: @ref:postgresql-asymmetrical-02808 completed provisioning, setting DATABASE_URL. by user shambachsikuku@gmail.com
+2022-08-10T10:18:39.815746+00:00 app[api]: Release v5 created by user shambachsikuku@gmail.com
+2022-08-10T10:18:39.815746+00:00 app[api]: Deploy 7385b97a by user shambachsikuku@gmail.com
+2022-08-10T10:18:39.829213+00:00 app[api]: Scaled to web@1:Free by user shambachsikuku@gmail.com
+2022-08-10T10:18:44.362117+00:00 heroku[web.1]: Starting process with command `gunicorn EcommerceApplication.wsgi`
+2022-08-10T10:18:45.378008+00:00 app[web.1]: bash: gunicorn: command not found
+2022-08-10T10:18:45.503717+00:00 heroku[web.1]: Process exited with status 127
+2022-08-10T10:18:45.635801+00:00 heroku[web.1]: State changed from starting to crashed
+2022-08-10T10:18:45.639029+00:00 heroku[web.1]: State changed from crashed to starting
+2022-08-10T10:18:49.814472+00:00 heroku[web.1]: Starting process with command `gunicorn EcommerceApplication.wsgi`
+2022-08-10T10:18:50.694225+00:00 app[web.1]: bash: gunicorn: command not found
+2022-08-10T10:18:50.798423+00:00 heroku[web.1]: Process exited with status 127
+2022-08-10T10:18:51.000000+00:00 app[api]: Build succeeded
+2022-08-10T10:18:51.017398+00:00 heroku[web.1]: State changed from starting to crashed
+2022-08-10T10:25:20.715264+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=fitch-store.herokuapp.com request_id=a3d019bb-d811-47a2-9659-a65689ee81b8 fwd="41.60.216.155" dyno= connect= service= status=503 bytes= protocol=https
+2022-08-10T10:25:23.054616+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=fitch-store.herokuapp.com request_id=43ed997a-c095-48d9-a08e-079fbd0c009c fwd="41.60.216.155" dyno= connect= service= status=503 bytes= protocol=https
+2022-08-10T10:32:53.104738+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=fitch-store.herokuapp.com request_id=03226dad-78b6-4420-a53a-25980ee51c57 fwd="41.60.216.155" dyno= connect= service= status=503 bytes= protocol=https
+2022-08-10T10:35:34.774052+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=fitch-store.herokuapp.com request_id=4bc4ea18-5510-4110-979e-ac524a2f75de fwd="41.60.216.155" dyno= connect= service= status=503 bytes= protocol=https
+2022-08-10T10:37:56.801508+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=fitch-store.herokuapp.com request_id=a2622c8e-3241-4e1b-8ccf-13560259a7ca fwd="41.60.216.155" dyno= connect= service= status=503 bytes= protocol=https
+2022-08-10T10:40:40.690639+00:00 app[api]: Starting process with command `rake db:migrate` by user shambachsikuku@gmail.com
+2022-08-10T10:40:46.234471+00:00 heroku[run.1952]: State changed from starting to up
+2022-08-10T10:40:46.243565+00:00 heroku[run.1952]: Awaiting client
+2022-08-10T10:40:46.259553+00:00 heroku[run.1952]: Starting process with command `rake db:migrate`
+2022-08-10T10:40:49.887890+00:00 heroku[run.1952]: Process exited with status 1
+2022-08-10T10:40:49.952251+00:00 heroku[run.1952]: State changed from up to complete
+2022-08-10T10:41:30.488451+00:00 heroku[web.1]: State changed from crashed to starting
+2022-08-10T10:41:34.881901+00:00 heroku[web.1]: Starting process with command `gunicorn EcommerceApplication.wsgi`
+2022-08-10T10:41:36.741923+00:00 app[web.1]: bash: gunicorn: command not found
+2022-08-10T10:41:36.865247+00:00 heroku[web.1]: Process exited with status 127
+2022-08-10T10:41:36.945399+00:00 heroku[web.1]: State changed from starting to crashed
+2022-08-10T10:41:36.951228+00:00 heroku[web.1]: State changed from crashed to starting
+2022-08-10T10:41:41.352952+00:00 heroku[web.1]: Starting process with command `gunicorn EcommerceApplication.wsgi`
+2022-08-10T10:41:42.195234+00:00 app[web.1]: bash: gunicorn: command not found
+2022-08-10T10:41:42.313556+00:00 heroku[web.1]: Process exited with status 127
+2022-08-10T10:41:42.534209+00:00 heroku[web.1]: State changed from starting to crashed
+2022-08-10T10:41:44.067110+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=fitch-store.herokuapp.com request_id=e1152ee3-5e9e-4b86-9323-02a6286a7193 fwd="41.60.216.155" dyno= connect= service= status=503 bytes= protocol=https
+2022-08-10T10:43:00.493494+00:00 app[api]: Scaled to web@0:Free by user shambachsikuku@gmail.com
+2022-08-10T10:43:00.595173+00:00 heroku[web.1]: State changed from crashed to down
+2022-08-10T10:44:58.856338+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=fitch-store.herokuapp.com request_id=778af7ce-0fbc-4dc3-acd9-dad195f095ef fwd="41.60.216.155" dyno= connect= service= status=503 bytes= protocol=https
