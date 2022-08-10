@@ -14,8 +14,6 @@ import os
 from pathlib import Path
 
 
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -28,7 +26,7 @@ SECRET_KEY = 'django-insecure-h2q#f83ysyi=#z5lx05+7qrg!30o85_$9k$olmm&)nm1n!^@(&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['fitch-store.herokuapp.com', "127.0.0.1"]
+ALLOWED_HOSTS = ['fitch-store.herokuapp.com', "127.0.0.1", '0.0.0.0']
 
 
 # Application definition
@@ -41,14 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'store',
-    'django_extensions'
+    # 'django_extensions'
 
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -57,6 +53,7 @@ MIDDLEWARE = [
     # 'store.middleware.CustomerMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'EcommerceApplication.urls'
@@ -140,11 +137,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# django_heroku.settings(locals())
-if 'DATABASE_URL' in os.environ:
-    import dj_database_url
-    DATABASES = {'default': dj_database_url.config()}
+# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# # django_heroku.settings(locals())
+# if 'DATABASE_URL' in os.environ:
+#     import dj_database_url
+#     DATABASES = {'default': dj_database_url.config()}
 
-# Activate Django-Heroku
-django_heroku.settings(locals())
+# # Activate Django-Heroku
+# django_heroku.settings(locals())

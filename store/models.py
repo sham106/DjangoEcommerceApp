@@ -4,7 +4,7 @@ from unittest.util import _MAX_LENGTH
 from urllib import request
 from django.db import models
 from distutils.command.upload import upload
-from turtle import title
+
 from django.contrib.auth.models import User
 
 from django.contrib.auth.hashers import make_password
