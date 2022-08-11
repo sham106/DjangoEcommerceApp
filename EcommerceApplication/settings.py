@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = 'django-insecure-h2q#f83ysyi=#z5lx05+7qrg!30o85_$9k$olmm&)nm1n!^@(&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['fitch-store.herokuapp.com', "127.0.0.1", '0.0.0.0']
 
@@ -87,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
         # 'ENGINE':'django.db.backends.sqlite3',
-        'NAME': '/home/shamabachs.s/Desktop/EcommerceApplication/data.sqlite3'
+        'NAME': 'database name'
     }
 }
 
