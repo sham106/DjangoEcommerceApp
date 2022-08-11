@@ -87,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
         # 'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/home/shambachs.s/heroku-Server/data.sqlite3'
+        'NAME': '/home/shamabachs.s/Desktop/EcommerceApplication/data.sqlite3'
     }
 }
 
