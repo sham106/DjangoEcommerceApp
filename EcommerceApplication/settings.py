@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import os
 from pathlib import Path
+from decouple import config
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -82,12 +83,26 @@ WSGI_APPLICATION = 'EcommerceApplication.wsgi.application'
 # load_dotenv()
 # DATABASES = {'default': dj_database_url.config(
 #     default='sqlite:///db.sqlite3', conn_max_age=600, ssl_require=False)}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+#         # 'ENGINE':'django.db.backends.sqlite3',
+#         # 'NAME': '/home/shamabachs.s/Desktop/EcommerceApplication/data.sqlite3'
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
-        # 'ENGINE':'django.db.backends.sqlite3',
-        # 'NAME': '/home/shamabachs.s/Desktop/EcommerceApplication/data.sqlite3'
+        'ENGINE': config("DATABASE_ENGINE"),
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': config("DATABASE_NAME"),
+        'HOST': config("DATABASE_HOST"),
+        'PORT': 5432,
+        'USER': config("DATABASE_USER"),
+        'PASSWORD': config("DATABASE_PASSWORD"),
+
+        
     }
 }
 
