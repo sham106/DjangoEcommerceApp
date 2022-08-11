@@ -83,14 +83,14 @@ WSGI_APPLICATION = 'EcommerceApplication.wsgi.application'
 # load_dotenv()
 # DATABASES = {'default': dj_database_url.config(
 #     default='sqlite:///db.sqlite3', conn_max_age=600, ssl_require=False)}
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
-#         # 'ENGINE':'django.db.backends.sqlite3',
-#         # 'NAME': '/home/shamabachs.s/Desktop/EcommerceApplication/data.sqlite3'
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+        # 'ENGINE':'django.db.backends.sqlite3',
+        # 'NAME': '/home/shamabachs.s/Desktop/EcommerceApplication/data.sqlite3'
+    }
+}
 
 DATABASES = {
     'default': {
