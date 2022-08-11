@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = 'django-insecure-h2q#f83ysyi=#z5lx05+7qrg!30o85_$9k$olmm&)nm1n!^@(&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['fitch-store.herokuapp.com', "127.0.0.1", '0.0.0.0']
 
