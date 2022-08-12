@@ -1,3 +1,6 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html style="font-size: 16px;">
 
@@ -215,7 +218,7 @@
                 class="u-align-center-md u-align-center-sm u-align-center-xs u-container-style u-expanded-width u-grey-5 u-product u-product-1">
                 <div class="u-container-layout u-container-layout-1">
                     <!--product_image-->
-                    <img src="//images01.nicepage.com/a1389d7bc73adea1e1c1fb7e/8be94b5c0c3c5c8885f3f123/pexels-photo-1464625.jpeg"
+                    <img src="{{product.image.url}}"
                         alt="" class="u-image u-image-default u-product-control u-image-1" data-image-width="750"
                         data-image-height="750">
                     <!--/product_image-->
@@ -226,7 +229,7 @@
                             <!--product_title-->
                             <h2 class="u-product-control u-text u-text-default u-text-1">
                                 <a class="u-product-title-link" href="#">
-                                    <!--product_title_content-->Sample Product
+                                    <!--product_title_content-->{{ product.title}}
                                     <!--/product_title_content-->
                                 </a>
                             </h2>
@@ -243,7 +246,7 @@
                                     <!--/product_old_price-->
                                     <!--product_regular_price-->
                                     <div class="u-price" style="font-size: 4.5rem; font-weight: 700;">
-                                        <!--product_regular_price_content-->$9.95
+                                        <!--product_regular_price_content-->ksh{{product.price}}
                                         <!--/product_regular_price_content-->
                                     </div>
                                     <!--/product_regular_price-->
@@ -253,8 +256,7 @@
                             <!--product_content-->
                             <div class="u-product-control u-product-desc u-text u-text-grey-15 u-text-2">
                                 <!--product_content_content-->
-                                <p>Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc
-                                    justo sagittis suscipit ultrices.</p>
+                                <p>{{product.description}}.</p>
                                 <!--/product_content_content-->
                             </div>
                             <!--/product_content-->
@@ -262,11 +264,8 @@
                             <!--options_json-->
                             <!--{"clickType":"add-to-cart","content":""}-->
                             <!--/options_json-->
-                            <a href="https://nicepage.com/"
-                                class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-product-control u-btn-1">
-                                <!--product_button_content-->Add to Cart
-                                <!--/product_button_content-->
-                            </a>
+                            <button data-product={{product.id}} data-action="add"
+                class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
                             <!--/product_button-->
                         </div>
                     </div>
@@ -280,3 +279,4 @@
 </body>
 
 </html>
+{% endblock content %}

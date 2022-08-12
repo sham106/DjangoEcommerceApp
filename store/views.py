@@ -9,6 +9,7 @@ import datetime
 from .models import Customer
 from . forms import CreateUserForm, LoginUserForm
 from django.contrib.auth.forms import AuthenticationForm
+from django.views.generic import DetailView
 
 # Create your views here.
 
@@ -71,11 +72,14 @@ def why_us(request):
     context = {}
     return render(request, 'why.html')
 
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'product_detail.html'
 
-def product_details(request, pk):
-    product = Product.objects.get(id=pk)
-    context = {"product": product}
-    return render(request, "product_detail.html", context)
+# def product_details(request, pk):
+#     product = Product.objects.get(id=pk)
+#     context = {"product": product}
+#     return render(request, "product_detail.html", context)
 
 
 def about(request):
