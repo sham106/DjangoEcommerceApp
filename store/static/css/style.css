@@ -45,6 +45,7 @@ body {
 .heading_container h2 {
   position: relative;
   font-weight: bold;
+  color: yellow;
 }
 
 .heading_container h2 span {
