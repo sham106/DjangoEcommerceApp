@@ -1,6 +1,7 @@
 asgiref==3.5.2
 boto3==1.24.49
 botocore==1.27.49
+decouple==0.0.7
 Django==4.0.6
 django-filter==22.1
 django-storages==1.13.1
