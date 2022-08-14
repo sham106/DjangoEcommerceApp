@@ -6,3 +6,7 @@ function getYear() {
 }
 
 getYear();
+
+    $('.update-cart').click(function (e){
+        e.preventDefault();
+    });

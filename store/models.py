@@ -1,5 +1,6 @@
 from decimal import Clamped
 import email
+from itertools import product
 from unittest.util import _MAX_LENGTH
 from urllib import request
 from django.db import models
@@ -127,3 +128,8 @@ class ShippingAddress(models.Model):
         return self.address
 
 
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product_quantity = models.IntegerField(null=False, blank=False)
+    created_at = models.DateTimeField(auto_now=True)
