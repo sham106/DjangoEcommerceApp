@@ -10,20 +10,18 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
-import os
 from pathlib import Path
-from decouple import config
-
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-h2q#f83ysyi=#z5lx05+7qrg!30o85_$9k$olmm&)nm1n!^@(&'
-
+SECRET_KEY = 'django-insecure-6jd5v53(m(y+)5_1bkt9%yd6e8cxi@@65ns_*5f-=%fb%n$%=9'
+# SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -40,18 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'store',
-    # 'django_extensions'
 
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    # 'store.middleware.CustomerMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -80,32 +75,12 @@ WSGI_APPLICATION = 'EcommerceApplication.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#
-# load_dotenv()
-# DATABASES = {'default': dj_database_url.config(
-#     default='sqlite:///db.sqlite3', conn_max_age=600, ssl_require=False)}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
-        
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': config("DATABASE_ENGINE"),
-#         # 'NAME': BASE_DIR / 'db.sqlite3',
-#         'NAME': config("DATABASE_NAME"),
-#         'HOST': config("DATABASE_HOST"),
-#         'PORT': 5432,
-#         'USER': config("DATABASE_USER"),
-#         'PASSWORD': config("DATABASE_PASSWORD"),
-
-        
-#     }
-# }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
