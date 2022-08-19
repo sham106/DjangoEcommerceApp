@@ -64,7 +64,7 @@ class Product(models.Model):
         ordering = ['title']
 
     def get_absolute_url(self):
-        return reverse("product_detail", args=[str(self.pk)])
+        return reverse("store:product_detail", args=[str(self.pk)])
 
 
 class Order(models.Model):
@@ -104,8 +104,6 @@ class OrderItem(models.Model):
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return self.product.title
 
     @property
     def get_total(self):

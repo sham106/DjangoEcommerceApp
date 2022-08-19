@@ -5,7 +5,7 @@
     <div class="col-lg-12">
         <div class="box-element">
 
-            <a class="btn btn-outline-dark" href="{% url 'product' %}">&#x2190; Continue Shopping</a>
+            <a class="btn btn-outline-dark" href="{% url 'store:product' %}">&#x2190; Continue Shopping</a>
 
             <br>
             <br>
@@ -19,7 +19,7 @@
                     </th>
                     <th>
                         <a style="float:right; margin:5px;" class="btn btn-success"
-                            href="{% url 'checkout' %}">Checkout</a>
+                            href="{% url 'store:checkout' %}">Checkout</a>
                     </th>
                 </tr>
             </table>
@@ -48,10 +48,10 @@
                 <div style="flex:1">
                     <p class="quantity">{{item.quantity}}</p>
                     <div class="quantity">
-                        <img data-product="{{item.product.id}}" data-action="add" class="chg-quantity"
+                        <img data-product="{{item.product.id}}" data-action="add" class="chg-quantity update-cart"
                             src="{% static  'images/3+arrow-up.png' %}">
 
-                        <img data-product="{{item.product.id}}" data-action="remove" class="chg-quantity"
+                        <img data-product="{{item.product.id}}" data-action="remove" class="chg-quantity update-cart"
                             src="{% static  'images/2+arrow-down.png' %}">
                     </div>
                 </div>

@@ -39,7 +39,7 @@ def registerpage(request):
             user = form.cleaned_data.get('username')
             messages.success(
                 request, 'Account was successfully created for ' + user)
-            return redirect('login')
+            return redirect('store:login')
 
     context = {'form': form}
     return render(request, 'register.html', context)
@@ -55,7 +55,7 @@ def loginpage(request):
         if user is not None:
             login(request, user)
             customer = request.user.customer
-            return redirect('home')
+            return redirect('store:home')
         else:
             messages.info(request, 'Username or password is incorrect')
 
@@ -76,10 +76,6 @@ class ProductDetailView(DetailView):
     model = Product
     template_name = 'product_detail.html'
 
-# def product_details(request, pk):
-#     product = Product.objects.get(id=pk)
-#     context = {"product": product}
-#     return render(request, "product_detail.html", context)
 
 
 def about(request):

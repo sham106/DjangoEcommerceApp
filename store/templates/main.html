@@ -54,7 +54,7 @@
             return cookieValue;
         }
         var csrftoken = getToken('csrftoken')
-    </script>
+        </script>
     <style>
         .hero_area {
             background-color: rgb(158, 158, 207);
@@ -109,14 +109,14 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     {% if user.is_authenticated%}
-                                    <a class="dropdown-item" href="{% url 'logout' %}">logout</a>
+                                    <a class="dropdown-item" href="{% url 'store:logout' %}">logout</a>
                                     {% else %}
-                                    <a class="dropdown-item" href="{% url 'login'%}">login</a>
-                                    <a class="dropdown-item" href="{% url 'register'%}">Register</a>
+                                    <a class="dropdown-item" href="{% url 'store:login'%}">login</a>
+                                    <a class="dropdown-item" href="{% url 'store:register'%}">Register</a>
                                     {% endif %}
                                 </div>
                             </li>
-                            <a href="{% url 'cart'%}" class="cart-link">
+                            <a href="{% url 'store:cart'%}" class="cart-link">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                 <span>
                                     Cart
@@ -131,7 +131,7 @@
             <div class="header_bottom">
                 <div class="container-fluid">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
-                        <a class="navbar-brand" href="{% url 'home' %}">
+                        <a class="navbar-brand" href="{% url 'store:home' %}">
                             <span>
                                 Fitch
                             </span>
@@ -149,13 +149,13 @@
                                     <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'about' %}"> About</a>
+                                    <a class="nav-link" href="{% url 'store:about' %}"> About</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'product' %}">Products</a>
+                                    <a class="nav-link" href="{% url 'store:product' %}">Products</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'why_us'%}">Why Us</a>
+                                    <a class="nav-link" href="{% url 'store:why_us'%}">Why Us</a>
                                 </li>
                             </ul>
                         </div>
@@ -260,7 +260,7 @@
                     <hr>
                     <button data-product={{product.id}} data-action="add"
                         class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
-                        <a class="btn btn-outline-success" href="{% url 'product_detail' product.pk %}">View</a>
+                        <a class="btn btn-outline-success" href="{% url 'store:product_detail' product.pk %}">View</a>
                     <h4 class="price" style="display: inline-block; float: right">ksh
                         {{product.price|floatformat:2}}
                     </h4>
@@ -318,12 +318,12 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{% url 'product' %}">
+                                <a href="{% url 'store:product' %}">
                                     Products
                                 </a>
                             </li>
                             <li>
-                                <a href="{% url 'why_us'%}">
+                                <a href="{% url 'store:why_us'%}">
                                     Why Us
                                 </a>
                             </li>
@@ -343,7 +343,7 @@
                             </button>
                         </form>
                         <div class="social_box">
-                            <a href="">
+                            <a href="https://www.facebook.com/shamss.asher">
                                 <i class="fa fa-facebook" aria-hidden="true"></i>
                             </a>
                             <a href="">
@@ -397,12 +397,12 @@
         crossorigin="anonymous"></script>
 
     <script scrc="{% static '/js/jquery-3.4.1.min.js' %}"></script>
-    <script type="text/javascript" src="{% static '/js/cart.js' %}"></script>
-    <script type="javascript" src="{% static '/js/bootstrap.js' %}"></script>
-    <script type="javascript" src="{% static '/js/custom.js' %}"></script>
-    <script type="javascript" src="{% static '/js/io.rangerSlider.min.js' %}"></script>
-    <script type="javascript" src="{% static '/js/jquery-3.4.1.min.js' %}"></script>
-
+    
+    <script type="text/javascript" src="{% static '/js/bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/custom.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/io.rangerSlider.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/jquery-3.4.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
 </body>
 
 </html>
