@@ -86,77 +86,63 @@ def about(request):
 def product(request):
     if request.user.is_authenticated:
         customer = request.user.customer
-        order, created = Order.objects.get_or_create(
-            customer=customer, complete=False)
-        items = order.orderitem_set.all()
-        cartItems = order.get_cart_items
-    else:
-        items = []
-        order = {'get_cat_total': 0, 'get_cart_items': 0, 'shipping': False}
-        cartItems = order['get_cart_items']
-
+        cart, created = Cart.objects.get_or_create(customer = customer, completed = False)
+        cartitems = cart.cartitems_set.all()
     products = Product.objects.all()
-    context = {'products': products, 'cartItems': cartItems}
-    return render(request, 'product.html', context)
+    return render(request, 'product.html', {'products': products, 'cart':cart})
+
 
 
 def cart(request):
     if request.user.is_authenticated:
         customer = request.user.customer
-        order, created = Order.objects.get_or_create(
-            customer=customer, complete=False)
-        items = order.orderitem_set.all()
-        cartItems = order.get_cart_items
+        cart, created = Cart.objects.get_or_create(customer = customer, completed = False)
+        cartitems = cart.cartitems_set.all()
     else:
-        items = []
-        order = {'get_cat_total': 0, 'get_cart_items': 0, 'shipping': False}
-        cartItems = order['get_cart_items']
+        cartitems = []
+        cart = {"get_cart_total": 0, "get_itemtotal": 0}
 
-    context = {'items': items, 'order': order, 'cartItems': cartItems}
-    return render(request, 'cart.html', context)
+
+    return render(request, 'cart.html', {'cartitems' : cartitems, 'cart':cart})
+
+    
 
 
 def checkout(request):
-    if request.user.is_authenticated:
-        customer = request.user.customer
-        order, created = Order.objects.get_or_create(
-            customer=customer, complete=False)
-        items = order.orderitem_set.all()
-    else:
-        items = []
-        order = {'get_cat_total': 0, 'get_cart_items': 0, 'shipping': False}
-    context = {'items': items, 'order': order}
-    context = {}
-    return render(request, 'checkout.html')
+    return render(request, 'checkout.html', {})
 
-
-def updateItem(request):
+def updateCart(request):
     data = json.loads(request.body)
-    productId = data['productId']
-    action = data['action']
-
-    print('Action:', action)
-    print('productId:', productId)
-
-    customer = request.user.customer
+    productId = data["productId"]
+    action = data["action"]
     product = Product.objects.get(id=productId)
-    order, created = Order.objects.get_or_create(
-        customer=customer, complete=False)
-
-    orderItem, created = OrderItem.objects.get_or_create(
-        order=order, product=product)
+    customer = request.user.customer
+    cart, created = Cart.objects.get_or_create(customer = customer, completed = False)
+    cartitem, created = Cartitems.objects.get_or_create(cart = cart, product = product)
 
     if action == 'add':
-        orderItem.quantity = (orderItem.quantity + 1)
+	    cartitem.quantity = (cartitem.quantity + 1)
     elif action == 'remove':
-        orderItem.quantity = (orderItem.quantity - 1)
+        cartitem.quantity = (cartitem.quantity - 1)
+    
 
-        orderItem.save()
+    cartitem.save()
 
-    if orderItem.quantity <= 0:
-        orderItem.delete()
-    return JsonResponse('item added successfully', safe=False)
+    if cartitem.quantity <= 0:
 
+        cartitem.delete()
+
+    return JsonResponse("Cart Updated", safe = False)
+
+def updateQuantity(request):
+    data = json.loads(request.body)
+    quantityFieldValue = data['qfv']
+    quantityFieldProduct = data['qfp']
+    product = Cartitems.objects.filter(product__name = quantityFieldProduct).last()
+    product.quantity = quantityFieldValue
+    product.save()
+    return JsonResponse("Quantity updated", safe = False)
+   
 
 def processOrder(request):
     transaction_id = datetime.datetime.now().timestamp()

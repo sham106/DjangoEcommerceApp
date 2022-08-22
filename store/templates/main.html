@@ -36,7 +36,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
     <script type="text/javascript">
-        var user = '{{request.user}}'
+        let user = '{{request.user}}'
 
         function getToken(name) {
             var cookieValue = null;
@@ -122,7 +122,7 @@
                                     Cart
                                 </span>
                             </a>
-                            <p id="cart-total">{{cartItems}}</p>
+                            <p id="cart-total">{{cart.get_itemtotal}}</p>
                         </div>
                     </div>
 
@@ -402,7 +402,7 @@
     <script type="text/javascript" src="{% static '/js/custom.js' %}"></script>
     <script type="text/javascript" src="{% static '/js/io.rangerSlider.min.js' %}"></script>
     <script type="text/javascript" src="{% static '/js/jquery-3.4.1.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+    <script src="{% static 'js/cart.js' %}"></script>
 </body>
 
 </html>
