@@ -65,7 +65,7 @@ def loginpage(request):
 
 def logoutuser(request):
     auth.logout(request)
-    return redirect('login')
+    return redirect('store:login')
 
 
 def why_us(request):
@@ -88,7 +88,12 @@ def product(request):
         customer = request.user.customer
         cart, created = Cart.objects.get_or_create(customer = customer, completed = False)
         cartitems = cart.cartitems_set.all()
+    else:
+        cart = []
+        cartitems = []
+        cart = {'cartquantity': 0}
     products = Product.objects.all()
+    
     return render(request, 'product.html', {'products': products, 'cart':cart})
 
 
@@ -104,12 +109,22 @@ def cart(request):
 
 
     return render(request, 'cart.html', {'cartitems' : cartitems, 'cart':cart})
-
     
 
-
 def checkout(request):
-    return render(request, 'checkout.html', {})
+
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        cart, created = Cart.objects.get_or_create(customer=customer, completed = False)
+        cartitems = cart.cartitems_set.all()
+    else:
+        cart = []
+        cartitems = []
+        cart = {'cartquantity': 0}
+      
+    context = {'cart': cart, 'cartitems': cartitems}
+    return render(request, 'checkout.html', context)
+
 
 def updateCart(request):
     data = json.loads(request.body)
@@ -121,18 +136,17 @@ def updateCart(request):
     cartitem, created = Cartitems.objects.get_or_create(cart = cart, product = product)
 
     if action == 'add':
-	    cartitem.quantity = (cartitem.quantity + 1)
+        cartitem.quantity = (cartitem.quantity + 1)
     elif action == 'remove':
         cartitem.quantity = (cartitem.quantity - 1)
-    
 
+    cartitem.ordered = True
     cartitem.save()
 
     if cartitem.quantity <= 0:
 
-        cartitem.delete()
 
-    return JsonResponse("Cart Updated", safe = False)
+        return JsonResponse("Cart Updated", safe = False)
 
 def updateQuantity(request):
     data = json.loads(request.body)
@@ -142,6 +156,11 @@ def updateQuantity(request):
     product.quantity = quantityFieldValue
     product.save()
     return JsonResponse("Quantity updated", safe = False)
+
+
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt    
    
 
 def processOrder(request):
@@ -149,25 +168,29 @@ def processOrder(request):
     data = json.loads(request.body)
     if request.user.is_authenticated:
         customer = request.user.customer
-        order, created = Order.objects.get_or_create(
-            customer=customer, complete=False)
+        cart, created = Cart.objects.get_or_create(customer = customer, completed = False)
         total = float(data['form']['total'])
-    order.transaction_id = transaction_id
+        cart.transaction_id = transaction_id
 
-    if total == order.get_cart_total:
-        order.complete = True
-    order.save()
+        if total == float(cart.get_cart_total):
+            cart.complete = True
+        cart.save()
+        Cartitems.delete
 
-    if order.shipping == True:
-        ShippingAddress.objects.create(
-            customer=customer,
-            order=order,
-            address=data['shipping']['address'],
-            city=data['shipping']['city'],
-            state=data['shipping']['state'],
-            zipcode=data['shipping']['zipcode'],
-        )
+        if cart.shipping == True:
+            ShippingAddress.objects.create(
+                customer=customer,
+                cart=cart,
+                address=data['shipping']['address'],
+                city=data['shipping']['city'],
+                state=data['shipping']['state'],
+                zipcode=data['shipping']['zipcode'],
+                )
+
+
 
     else:
-        print('user is not logged in')
+        
+        print('user is not logged in...')
+
     return JsonResponse('payment complete', safe=False)

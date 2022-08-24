@@ -76,6 +76,14 @@ class Cart(models.Model):
     cart_id = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
     completed = models.BooleanField(default=False)
 
+    @property
+    def shipping(self):
+        shipping = True
+        cartitems = self.cartitems_set.all()
+        
+        return shipping
+
+
 
     @property
     def get_cart_total(self):
