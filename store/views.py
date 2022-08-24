@@ -140,13 +140,14 @@ def updateCart(request):
     elif action == 'remove':
         cartitem.quantity = (cartitem.quantity - 1)
 
-    cartitem.ordered = True
+
     cartitem.save()
 
     if cartitem.quantity <= 0:
 
+        cartitem.delete()
 
-        return JsonResponse("Cart Updated", safe = False)
+    return JsonResponse("Cart Updated", safe = False)
 
 def updateQuantity(request):
     data = json.loads(request.body)
