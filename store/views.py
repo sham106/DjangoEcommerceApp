@@ -118,12 +118,12 @@ def checkout(request):
         customer = request.user.customer
         cart, created = Cart.objects.get_or_create(customer=customer, completed = False)
         cartitems = cart.cartitems_set.all()
-         # Reduce inventory
-        product = Product.objects.get(id=product.product_id)
-        product.inventory = product.inventory - product.cart_quantity
-        product.save()
-    # Clear cart
-    Cartitems.objects.filter(user=request.user).delete()
+    #      # Reduce inventory
+    #     product = Product.objects.get(id=product.product_id)
+    #     product.inventory = product.inventory - product.cart_quantity
+    #     product.save()
+    # # Clear cart
+    # Cartitems.objects.filter(user=request.user).delete()
     
       
     context = {'cart': cart, 'cartitems': cartitems}
