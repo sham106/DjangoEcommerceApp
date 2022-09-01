@@ -104,6 +104,7 @@ def cart(request):
         cart, created = Cart.objects.get_or_create(customer = customer, completed = False)
         cartitems = cart.cartitems_set.all()
     else:
+        return redirect('store:login')
         cartitems = []
         cart = {"get_cart_total": 0, "get_itemtotal": 0}
 
@@ -117,13 +118,32 @@ def checkout(request):
         customer = request.user.customer
         cart, created = Cart.objects.get_or_create(customer=customer, completed = False)
         cartitems = cart.cartitems_set.all()
-    else:
-        cart = []
-        cartitems = []
-        cart = {'cartquantity': 0}
+         # Reduce inventory
+        product = Product.objects.get(id=item.product_id)
+        product.inventory = product.inventory - item.cart_quantity
+        product.save()
+    # Clear cart
+    Cartitems.objects.filter(user=request.user).delete()
+    
       
     context = {'cart': cart, 'cartitems': cartitems}
     return render(request, 'checkout.html', context)
+
+# def remove_cart_item(request, id):
+#     if request.user.is_anonymous:
+#         customer = None
+#         product = Product.objects.get(id=id)
+#         cart = Cart.objects.filter( customer=customer)
+#         orderItem = Cartitems.objects.filter(product=product, cart__in=cart)
+#         orderItem.delete()
+#     else:    
+#         customer = request.user
+#         product = Product.objects.get(id=id)
+#         order = Cart.objects.filter( customer=customer)
+#         orderItem = Cartitems.objects.filter(product=product, cart__in=order)
+#         orderItem.delete()
+#     return redirect('cart')
+
 
 
 def updateCart(request):
@@ -146,9 +166,12 @@ def updateCart(request):
     if cartitem.quantity <= 0:
 
         cartitem.delete()
+    if processOrder == True:
+        cart.delete()
 
     return JsonResponse("Cart Updated", safe = False)
 
+   
 def updateQuantity(request):
     data = json.loads(request.body)
     quantityFieldValue = data['qfv']
@@ -176,7 +199,7 @@ def processOrder(request):
         if total == float(cart.get_cart_total):
             cart.complete = True
         cart.save()
-        Cartitems.delete
+       
 
         if cart.shipping == True:
             ShippingAddress.objects.create(
@@ -187,11 +210,16 @@ def processOrder(request):
                 state=data['shipping']['state'],
                 zipcode=data['shipping']['zipcode'],
                 )
+                
 
 
 
     else:
         
         print('user is not logged in...')
+        
+        
 
     return JsonResponse('payment complete', safe=False)
+
+    
