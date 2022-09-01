@@ -47,6 +47,11 @@ To deploy this first you need to have the followwing files:
 - inserts item
 - removes item
 - modifies item
+## Demo
+
+ link to demo
+
+ [click here](https://fitch-store.herokuapp.com)
 ## contact
 You can reach me on 
 
