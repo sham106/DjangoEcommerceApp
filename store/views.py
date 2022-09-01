@@ -115,15 +115,17 @@ def cart(request):
 def checkout(request):
         if request.user.is_authenticated:
             customer = request.user.customer
-            order, created = Cart.objects.get_or_create(
-                customer=customer, complete=False)
-            items = order.orderitem_set.all()
+            cart, created = Cart.objects.get_or_create(
+                customer=customer, completed=False)
+            items = cart.cartitems_set.all()
+            # Clear cart
+            Cartitems.objects.filter(pk=request.user.pk).delete()
         else:
             items = []
-            order = {'get_cat_total': 0, 'get_cart_items': 0, 'shipping': False}
-            cartitems = order['get_cart_items']
+            cart = {'get_cat_total': 0, 'get_cart_items': 0, 'shipping': False}
+            cartitems = cart['get_cart_items']
 
-        context = {'items': items, 'order': order}
+        context = {'items': items, 'cart': cart}
         return render(request, 'checkout.html', context)
 
     # if request.user.is_authenticated:
@@ -156,6 +158,18 @@ def checkout(request):
 #         orderItem.delete()
 #     return redirect('cart')
 
+def clear_cart(request):
+    if request.user.is_authenticated:
+        customer = None
+        cart, created = Cart.objects.get_or_create(customer=customer, Transaction_completed=False)
+        cartItems = Cartitems.objects.filter(cart=cart)
+        cartItems.delete()
+    else:
+        customer = request.user
+        cart, created = Cart.objects.get_or_create(customer=customer, Transaction_complete=False)
+        cartItems = Cartitems.objects.filter(cart=cart)
+        cartItems.delete()
+    return redirect('cart')    
 
 
 def updateCart(request):
