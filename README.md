@@ -23,7 +23,7 @@ To deploy this first you need to have the followwing files:
 - ``` requirements.txt ```
 - ``` setup.py ```
 - ``` pipfile ```
-### prereguisite :
+#### prerequisite :
 - Git ``` sudo apt install git ```
 - Heroku CLI [click here](https:devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli)
  To deploy run the following command
