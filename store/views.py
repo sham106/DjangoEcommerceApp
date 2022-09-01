@@ -114,7 +114,7 @@ def cart(request):
 
 def checkout(request):
 
-    if request.user.is_authenticated:
+    if request.user.customer.is_authenticated:
         customer = request.user.customer
         cart, created = Cart.objects.get_or_create(customer=customer, completed = False)
         cartitems = cart.cartitems_set.all()
