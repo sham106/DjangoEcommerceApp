@@ -124,7 +124,7 @@ def checkout(request):
             cartitems = order['get_cart_items']
 
         context = {'items': items, 'order': order}
-        return render(request, 'store:checkout.html', context)
+        return render(request, 'checkout.html', context)
 
     # if request.user.is_authenticated:
     #     customer = request.user.customer
