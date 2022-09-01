@@ -126,8 +126,8 @@ def checkout(request):
     # Cartitems.objects.filter(user=request.user).delete()
     
       
-    context = {'cart': cart, 'cartitems': cartitems}
-    return render(request, 'checkout.html', context)
+        context = {'cart': cart, 'cartitems': cartitems}
+        return render(request, 'checkout.html', context)
 
 # def remove_cart_item(request, id):
 #     if request.user.is_anonymous:
