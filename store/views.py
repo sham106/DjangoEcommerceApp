@@ -113,11 +113,23 @@ def cart(request):
     
 
 def checkout(request):
+        if request.user.is_authenticated:
+            customer = request.user.customer
+            order, created = Cart.objects.get_or_create(
+                customer=customer, complete=False)
+            items = order.orderitem_set.all()
+        else:
+            items = []
+            order = {'get_cat_total': 0, 'get_cart_items': 0, 'shipping': False}
+            cartitems = order['get_cart_items']
 
-    if request.user.is_authenticated:
-        customer = request.user.customer
-        cart, created = Cart.objects.get_or_create(customer=customer, completed = False)
-        cartitems = cart.cartitems_set.all()
+        context = {'items': items, 'order': order}
+        return render(request, 'store:checkout.html', context)
+
+    # if request.user.is_authenticated:
+    #     customer = request.user.customer
+    #     cart, created = Cart.objects.get_or_create(customer=customer, completed = False)
+    #     cartitems = cart.cartitems_set.all()
     #      # Reduce inventory
     #     product = Product.objects.get(id=product.product_id)
     #     product.inventory = product.inventory - product.cart_quantity
@@ -126,8 +138,8 @@ def checkout(request):
     # Cartitems.objects.filter(user=request.user).delete()
     
       
-        context = {'cart': cart, 'cartitems': cartitems}
-        return render(request, 'checkout.html', context)
+        # context = {'cart': cart, 'cartitems': cartitems}
+        # return render(request, 'checkout.html', context)
 
 # def remove_cart_item(request, id):
 #     if request.user.is_anonymous:
